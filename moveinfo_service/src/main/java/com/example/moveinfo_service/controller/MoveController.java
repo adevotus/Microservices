@@ -12,6 +12,6 @@ public class MoveController {
 
     @GetMapping("/{moveId}")
     public MoveModel getMoveInfo(@PathVariable ("moveId" ) String moveId){
-return new MoveModel(moveId, "The best in the word");
+    return new MoveModel(moveId, "The movei is  about the working to the client area");
     }
 }

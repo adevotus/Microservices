@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class MoveModel {
     private String moveId;
     private String name;
+
+//    public MoveModel(){}
 }
