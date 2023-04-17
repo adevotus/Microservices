@@ -31,9 +31,9 @@ public class MoveCatalogController {
     public List<CatalogModel> getCatalog(@PathVariable("userId") String userId){
 
     //get all moveId from rated and  put the together
-    UserRatingModel ratings = restTemplate.getForObject("http://127.0.0.1:8084/moves/api/user/" + userId, UserRatingModel.class);
+    UserRatingModel ratings = restTemplate.getForObject("http://Rating-Data-Service/moves/api/user/" + userId, UserRatingModel.class);
     return ratings.getUserRatingModel().stream().map(rating -> {
-      MoveModel movie =   restTemplate.getForObject("http://127.0.0.1:8080/moves/api/" + rating.getMoveId(), MoveModel.class);
+      MoveModel movie =   restTemplate.getForObject("http://Movie-Info-Service/moves/api/" + rating.getMoveId(), MoveModel.class);
 
        return new CatalogModel(movie.getName(), "the best movie  in the word ", rating.getRating());
     })
