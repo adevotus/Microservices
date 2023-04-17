@@ -2,19 +2,13 @@ package com.example.catalog_service.controller;
 
 import com.example.catalog_service.model.CatalogModel;
 import com.example.catalog_service.model.MoveModel;
-import com.example.catalog_service.model.RatingModel;
 import com.example.catalog_service.model.UserRatingModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,11 +17,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/moves/api/catalog")
 public class MoveCatalogController {
 
-    @Autowired
+
     private RestTemplate restTemplate;
-    @Autowired
-    private WebClient.Builder webClientBuilder;
-   @GetMapping("/{userId}")
+
+    public MoveCatalogController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @GetMapping("/{userId}")
     public List<CatalogModel> getCatalog(@PathVariable("userId") String userId){
 
     //get all moveId from rated and  put the together
