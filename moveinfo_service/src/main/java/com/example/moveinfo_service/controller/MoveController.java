@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.logging.Logger;
+
 
 @RestController
 @RequestMapping("/moves/api")
@@ -26,6 +28,7 @@ public class MoveController {
     @GetMapping("/{moveId}")
     public MoveModel getMoveInfo(@PathVariable ("moveId" ) String moveId){
         MoveModel moveModel = restTemplate.getForObject("https://api.themoviedb.org/3/movie/" + moveId + "?api_key=" + apiKey, MoveModel.class);
+        Logger.getLogger("movies").info("to check if some thing will occur");
     return new MoveModel(moveId, moveModel.getTitle(), moveModel.getOverview(),moveModel.getOriginal_language());
 
     }
