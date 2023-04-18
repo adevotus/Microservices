@@ -3,6 +3,7 @@ package com.example.catalog_service.controller;
 import com.example.catalog_service.model.CatalogModel;
 import com.example.catalog_service.model.MoveModel;
 import com.example.catalog_service.model.UserRatingModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,18 +12,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 @RestController
 @RequestMapping("/moves/api/catalog")
 public class MoveCatalogController {
 
-
+    @Autowired
     private RestTemplate restTemplate;
 
-    public MoveCatalogController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+
 
     @GetMapping("/{userId}")
     public List<CatalogModel> getCatalog(@PathVariable("userId") String userId){
